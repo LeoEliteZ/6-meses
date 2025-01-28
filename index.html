@@ -14,7 +14,7 @@
             padding: 0;
         }
         header {
-            background-image: url('https://photos.fife.usercontent.google.com/pw/AP1GczMCdAZjVJ9M_CPeqZhg9tvp7d2VFPe8ImV6cPybRPABsv5glvCcnveK=w1392-h928-s-no-gm?authuser=0'); /* Substitua pela URL da sua imagem */
+            background-image: url('sua-imagem-de-fundo.jpg'); /* Substitua pela URL da sua imagem */
             height: 300px;
             background-size: cover;
             color: white;
@@ -58,6 +58,15 @@
             background-color: #ff6f61;
             color: white;
         }
+        .memory-form {
+            display: none;
+            margin-top: 20px;
+        }
+        .memory-list {
+            margin-top: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
     </style>
 </head>
 <body>
@@ -74,14 +83,21 @@
         <img src="imagem2.jpg" alt="Memória 2"> <!-- Substitua pela URL da sua imagem -->
         <img src="imagem3.jpg" alt="Memória 3"> <!-- Substitua pela URL da sua imagem -->
     </div>
-    <button class="button">Adicionar uma Memória</button>
+    <button class="button" onclick="toggleMemoryForm()">Adicionar uma Memória</button>
+    
+    <div class="memory-form" id="memoryForm">
+        <input type="text" id="memoryInput" placeholder="Digite sua memória aqui..." />
+        <button class="button" onclick="addMemory()">Salvar Memória</button>
+    </div>
+    
+    <ul class="memory-list" id="memoryList"></ul>
 </section>
 
 <section>
     <h2>Nossa Linha do Tempo</h2>
     <p>Principais marcos dos nossos 6 meses juntos.</p>
     <ul>
-        <li>Primeiro encontro: 01/01/2024</li>
+        <li>Conhecemos: 01/01/2024</li>
         <li>Pedido de namoro: 28/07/2024</li>
         <li>Aniversário de 6 meses: 28/01/2025</li>
     </ul>
@@ -102,7 +118,7 @@
     <ul>
         <li>Viajar para a Grecia</li>
         <li>Fazer um jantar romântico na nossa casa</li>
-        <li> casar</li>
+        <li>CASAR</li>
     </ul>
 </section>
 
@@ -110,4 +126,26 @@
     <p>Obrigado por fazer parte da minha vida! ❤️</p>
 </footer>
 
+<script>
+    function toggleMemoryForm() {
+        const form = document.getElementById('memoryForm');
+        form.style.display = form.style.display === 'none' || form.style.display === '' ? 'block' : 'none';
+    }
+
+    function addMemory() {
+        const memoryInput = document.getElementById('memoryInput');
+        const memoryList = document.getElementById('memoryList');
+        if (memoryInput.value.trim() !== '') {
+            const li = document.createElement('li');
+            li.textContent = memoryInput.value;
+            memoryList.appendChild(li);
+            memoryInput.value = '';
+            toggleMemoryForm();
+        } else {
+            alert('Por favor, digite uma memória antes de salvar.');
+        }
+    }
+</script>
+
 </body>
+</html>
